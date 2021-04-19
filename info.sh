@@ -227,8 +227,12 @@ elif [[ $COMMAND == "hwid" ]]; then
   fi
 
 elif [[ $COMMAND == "speedtest" ]]; then
-# output json response of detected wifi networks
+# output value of selected speedtest server 
   /usr/local/share/nems/nems-scripts/info2.sh 10 $VARIABLE
+
+elif [[ $COMMAND == "disablespeedtest" ]]; then
+# output value of selected speedtest server 
+  cat /usr/local/share/nems/nems.conf | grep disablespeedtest |  printf '%s' $(cut -n -d '=' -f 2)
 
 elif [[ $COMMAND == "livestatus" ]]; then
 # output json response of livestatus query

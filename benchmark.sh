@@ -153,7 +153,14 @@ echo "Memory:" >> $tmpdir/nems-benchmark.log
 echo "---------------------------------" >> $tmpdir/nems-benchmark.log
 
 echo "Internet Speed:" >> $tmpdir/nems-benchmark.log
-/usr/local/share/nems/nems-scripts/speedtest --simple >> $tmpdir/nems-benchmark.log
+disablespeedtest=`/usr/local/bin/nems-info disablespeedtest`
+if [[ $disablespeedtest == 1 ]]; then
+  echo "Ping: N/A ms" >> $tmpdir/nems-benchmark.log
+  echo "Download: N/A Mbit/s" >> $tmpdir/nems-benchmark.log
+  echo "Upload: N/A Mbit/s" >> $tmpdir/nems-benchmark.log
+else
+  /usr/local/share/nems/nems-scripts/speedtest --simple >> $tmpdir/nems-benchmark.log
+fi
 
 echo "---------------------------------" >> $tmpdir/nems-benchmark.log
 
